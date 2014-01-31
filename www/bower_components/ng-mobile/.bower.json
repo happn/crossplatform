@@ -1,0 +1,33 @@
+{
+  "name": "ng-mobile",
+  "version": "0.3.3",
+  "main": [
+    "./ng-mobile.js",
+    "./ng-mobile.css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "components",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "angular": "PatternConsulting/bower-angular#1.1.5",
+    "angular-resource": "PatternConsulting/bower-angular#1.1.5",
+    "angular-cookies": "PatternConsulting/bower-angular#1.1.5",
+    "angular-sanitize": "PatternConsulting/bower-angular#1.1.5",
+    "angular-mobile-nav": "ajoslin/angular-mobile-nav"
+  },
+  "homepage": "https://github.com/Jehu/ng-mobile",
+  "_release": "0.3.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.3",
+    "commit": "159c02b7b43381dd08e7c230c120b4ae434c40e9"
+  },
+  "_source": "git://github.com/Jehu/ng-mobile.git",
+  "_target": "~0.3.3",
+  "_originalSource": "ng-mobile",
+  "_direct": true
+}
