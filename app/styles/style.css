@@ -20,6 +20,13 @@ body{
 	margin:0;
 }
 
+h3 {
+	font-family: montserrat-bold;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 14px;
+}
+
 .nav{
 	display: table;
     width: 100%;
@@ -138,6 +145,24 @@ body{
 	font-family: montserrat-bold;
 }
 
+/*---mensa chooser---*/
+.mensa-chooser{
+	font-family: montserrat-regular;
+	font-size: 14px;
+	color:#373737;
+}
+
+.mensa-chooser ul{
+	list-style-type: none;
+	text-align: center;
+	padding-left: 0px;
+}	
+
+.mensa-chooser a{
+	text-decoration: none;
+	color:#373737;
+}
+/*---end mensa chooser---*/
 /*.header {
 	width: 100%;
 	margin: 0 auto;

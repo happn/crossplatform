@@ -14,15 +14,17 @@
 
         <script type="text/template" id="template-mensen">
             <h3>Mensa wählen</h3>
-            <ul>
-                <%  mensen.forEach(function( mensa ){ %>
-                    <li data-id="<%= mensa.id %>">
-                        <a href="/select-mensa/<%= mensa.name %>"><%= mensa.name %></a>
-                    </li>
-                <% }); %>
-            </ul>
+            <div class="mensa-chooser">
+                <ul>
+                    <%  mensen.forEach(function( mensa ){ %>
+                        <li data-id="<%= mensa.id %>">
+                            <a href="/select-mensa/<%= mensa.name %>"><%= mensa.name %></a>
+                        </li>
+                    <% }); %>
+                </ul>
 
-            <button class="btn btn-primary">Los gehts</button>
+                <button class="btn btn-primary">Los gehts</button>
+            </div>
         </script>
         <script type="text/template" id="template-menuNav">
                 <ul class="nav">
