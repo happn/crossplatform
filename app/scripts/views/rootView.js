@@ -33,7 +33,7 @@
 			}.bind(this));
 
 			this.router.route('menu', function(){
-				this.view = new happn.Views.MenuSlider( this ); 
+				this.view = new happn.Views.MenuSlider( this, $('.viewport') ); 
 			}.bind(this));
 
 			Backbone.history.start(); 
