@@ -10,48 +10,7 @@
 		<script src="bower_components/modernizr/modernizr.js"></script>
     </head>
     <body>
-    	<section class="viewport">
-    		<header class="header">
-      			<ul class="nav">
-        			<li class="active"><a href="#"><div>MO</div><div class="header-day">22</div></a></li>
-        			<li><a href="#"><div>DI</div><div class="header-day">23</div></a></li>
-        			<li><a href="#"><div>MI</div><div class="header-day">24</div></a></li>
-        			<li><a href="#"><div>DO</div><div class="header-day">25</div></a></li>
-        			<li><a href="#"><div>FR</div><div class="header-day">26</div></a></li>
-        		</ul>
-    		</header>
-    		<section id="wrapper">
-    			<section id="scrollable">
-    				<section class="content">
-    					<section class="menus">
-    						<div class="meal-picture"><img src="images/food.jpg">
-								<div class="picture-gradient">
-									<div class="poster-dude">
-									POSTED BY SEPPSTER<img src="images/avatar.png">
-									</div>
-								</div>
-    						</div>
-    						<div class="meal-info">
-    							<div class="meal-like">
-    								<img src="images/herzle.png">
-    								<div class="meal-like-circle">
-    									<a href="#">0</a>
-    								</div>	
-    							</div>
-    							<div class="meal-description">
-	    							<h1>MENÜ A</h1>
-	    							Tagessuppe<br/>
-									Italienischer Nudelteller<br/>
-									mit Tomaten-Basilikum-Sauce<br/>
-									Blattsalat<br/>
-									Dessert<br/>
-    							</div>
-    						</div>
-    					</section>
-    				</section>
-    			</section>
-    		</section>
-    	</section>
+    	<section class="viewport"></section>
 
         <script type="text/template" id="template-mensen">
             <h3>Mensa wählen</h3>
@@ -65,6 +24,51 @@
                 </ul>
 
                 <button class="btn btn-primary">Los gehts</button>
+            </div>
+        </script>
+        <script type="text/template" id="template-menuNav">
+                <ul class="nav">
+                    <% ["Mo", "Di", "Mi", "Do", "Fr"].forEach(function(day, i){ %>
+                    <li><a href="#"><div><%= day %></div><div class="header-day"><%= dates[i] %></div></a></li>
+                    <% }); %>
+                </ul>
+        </script>
+
+        <script type="text/template" id="template-menuBase">
+            <div >
+                <header class="header"></header>
+                <section id="wrapper"></section>
+            </div>
+        </script>
+        <script type="text/template" id="template-menuDay">
+            <section class="day" data-date="<%= date %>">
+                <section class="content">
+                    <section class="menus scrollable">
+                    </section>
+                </section>
+            </section>
+        </script>
+        <script type="text/template" id="template-menuItem">
+            <div class="meal">
+                <% if(menu.images) { %>
+                    <div class="meal-picture">
+                        <img src="images/food.jpg">
+                        <div class="picture-gradient">
+                            <div class="poster-dude">
+                            POSTED BY SEPPSTER<img src="images/avatar.png">
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="meal-info">
+                    <div class="meal-like">
+                        <img src="images/herzle.png">
+                        <div class="meal-like-circle">
+                            <a href="#"><%= menu.upvotes || menu.likes %></a>
+                        </div>  
+                    </div>
+                    <div class="meal-description"><%= menu.title %></div>
+                </div>
             </div>
         </script>
     
