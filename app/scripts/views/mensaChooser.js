@@ -28,7 +28,7 @@
 				this.mensen = new Backbone.Collection(data.mensen);
 			}
 
-			this.$templates.mensen(data).appendTo(this.$el);
+			this.$templates.mensen(data).appendTo(this.$el.empty());
 		},
 
 		selectMensa : function( event ){
