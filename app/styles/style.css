@@ -1,0 +1,144 @@
+@font-face {
+	font-family: montserrat-regular;
+	src: url('../fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+	font-family: montserrat-bold;
+	src: url('../fonts/Montserrat-Bold.ttf');
+}
+
+@font-face {
+	font-family: aleo-regular;
+	src: url('../fonts/Aleo-Regular.ttf');
+}
+
+body{
+	font-family: aleo-regular;
+	font-size: 16px;
+	color:#373737;
+	margin:0;
+}
+
+.nav{
+	display: table;
+    width: 100%;
+    text-align: center;
+	padding-left: 0px;
+	font-family: montserrat-bold;
+	font-size:19px;
+}
+
+.nav li {
+    display: table-cell;
+    text-align: center;
+}
+
+.nav li a {
+	text-decoration: none;
+	color:#373737;
+}
+
+.nav li.active a{
+	color:#eb6148;
+}
+
+.header-day{
+	font-size: 14px;
+	font-family: montserrat-regular;
+}
+
+.meal-picture{
+	position: relative;
+	text-align: center;
+	background: #000;
+	line-height: 10px;
+	color:#FFF;
+	font-family: montserrat-regular;
+	font-size: 14px;
+}
+
+.meal-picture img{
+	max-width: 100%;
+    width: auto\9; /* ie8 */
+	height:auto;
+}
+
+.picture-gradient{
+	position: absolute;
+	bottom: 0px;
+	background-image: url(../images/picture-gradient.png);
+	background-repeat: repeat-x;
+	height: 112px;
+	width: 100%;
+}
+
+.poster-dude{
+	font-size: 10px;
+	position: absolute;
+	bottom: 5px;
+	right: 7%;
+	line-height: 35px;
+}
+
+.poster-dude img{
+	margin-left: 10px;
+	border-radius: 9999px;
+	border: 2px solid #FFF;
+	height:32px;
+	width: 32px;
+	position: relative;
+	top: 12px;
+	right: 0px;
+}
+
+.meal-info{
+	clear:both;
+	position: relative;
+}
+
+.meal-like{
+	position: absolute;
+	top: 20%;
+	right: 6.25%;
+	font-size: 20px;
+	font-family: montserrat-regular;
+}
+
+.meal-like img{
+	width: 12px;
+	height: 10px;
+}
+
+.meal-like a{
+	color:#eb6148;
+	text-decoration: none;
+}
+
+.meal-like-circle{
+	display: inline-block;
+	width: 38px;
+	height: 38px;
+	line-height: 37px;
+	border-radius: 9999px;
+	border: 2px solid #eb6148;
+	text-align: center;
+}
+
+.meal-description{
+	margin-left:7%;
+	font-family: aleo-regular;
+	font-size: 14px;
+}
+
+.meal-description h1{
+	margin-top: 15px;
+	margin-bottom: 5px;
+	font-size: 14px;
+	font-family: montserrat-bold;
+}
+
+/*.header {
+	width: 100%;
+	margin: 0 auto;
+}*/
