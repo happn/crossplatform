@@ -1,18 +1,6 @@
-/*global happnCrossplatform, $*/
-
-
-window.happnCrossplatform = {
+window.happn = {
     Models: {},
     Collections: {},
     Views: {},
-    Routers: {},
-    init: function () {
-        'use strict';
-        console.log('Hello from Backbone!');
-    }
+    Routers: {}
 };
-
-$(document).ready(function () {
-    'use strict';
-    happnCrossplatform.init();
-});
