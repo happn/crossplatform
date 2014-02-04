@@ -10,7 +10,7 @@
 
 @font-face {
 	font-family: aleo-regular;
-	src: url('../fonts/Aleo-Regular.ttf');
+	src: url('../fonts/Aleo-Regular.otf');
 }
 
 body{
@@ -25,6 +25,39 @@ h3 {
 	text-transform: uppercase;
 	text-align: center;
 	font-size: 14px;
+}
+
+.btn {
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.btn-default {
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #eb6148;
+	border-color: #c3513c;
 }
 
 .nav{
@@ -150,13 +183,27 @@ h3 {
 	font-family: montserrat-regular;
 	font-size: 14px;
 	color:#373737;
+	text-align: center;
 }
 
 .mensa-chooser ul{
 	list-style-type: none;
 	text-align: center;
 	padding-left: 0px;
-}	
+}
+
+.mensa-chooser ul li{
+	border-top: 1px solid #373737;
+	line-height: 40px;
+}
+
+.mensa-chooser ul li.selected{
+	background-color: #c6c6c6;
+}
+
+.mensa-chooser ul li:last-child{
+	border-bottom: 1px solid #373737;
+}
 
 .mensa-chooser a{
 	text-decoration: none;
