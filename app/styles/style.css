@@ -213,6 +213,8 @@ h3 {
 	background: #fff;
 	top: 0;
 	width: 100%;
+	z-index: 10;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.43);
 }
 
 /*---mensa chooser---*/
