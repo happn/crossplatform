@@ -33,10 +33,23 @@
 				day.menu_a.name = "Menü A";
 				day.menu_b.name = "Menü B";
 
-				$menus.append( this.templates.menuItem({ menu : day.menu_a }) );
-				$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
+				var $menu_a = this.$templates.menuItem({ menu : day.menu_a });
+				var $menu_b = this.$templates.menuItem({ menu : day.menu_b });
+
+				$menu_a.find('.meal-pictures').cantTouchThis({
+					tile : { width : $(window).width() },
+					tiles : 2
+				})
+				$menu_b.find('.meal-pictures').cantTouchThis({
+					tile : { width : $(window).width() },
+					tiles : 2
+				})
+
+				$menus.append($menu_b  );
+				$menus.append($menu_a  );
 				//$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
 				//$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
+				
 
 				$baseTmpl.find('#days > section').append($day);
 			}, this);
@@ -63,8 +76,8 @@
                 '-webkit-transition' :  '400ms cubic-bezier(0.1, 0.57, 0.1, 1)',
                 'transition' : '400ms cubic-bezier(0.1, 0.57, 0.1, 1)'
             });
-            this.updateNav(null, index);
 
+            this.updateNav(null, index);
             event.preventDefault();
 		},
 

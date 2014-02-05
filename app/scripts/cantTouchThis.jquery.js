@@ -8,7 +8,7 @@
 		// The actual plugin constructor
 		function CantTouchThis ( element, options ) {
 			this.element = $(element);
-			this.container = $(options.container);
+			this.container = $(options.container || element);
 			this.touched = {
                 start : {
                     x : 0,

@@ -101,6 +101,12 @@ h3 {
 	color:#FFF;
 	font-family: "montserrat-regular";
 	font-size: 14px;
+	width: 200%;
+}
+
+.meal-picture{
+	width:50%;
+	float: left;
 }
 
 .meal-picture img{
@@ -110,11 +116,13 @@ h3 {
 }
 
 .picture-gradient{
-	position: absolute;
+	position: relative;
 	bottom: 0px;
 	background-image: url(../images/picture-gradient.png);
 	background-repeat: repeat-x;
 	height: 112px;
+	width: inherit;
+	margin-top: -112px;
 	width: 100%;
 }
 
@@ -188,6 +196,10 @@ h3 {
 .meal-description b {
 	font-family: "aleo-bold";
 	line-height: 23px;
+}
+
+.meal{
+	overflow: hidden;
 }
 
 .meal h4 {
