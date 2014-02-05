@@ -56,11 +56,11 @@
                     this.touched.speed = Math.abs(this.touched.distance / this.touched.duration);
 
                     if (this.touched.speed > 0.5 || Math.abs(this.touched.distance) > (this.tile.width / 3)) {
-
+                        console.log(this.position, this.tiles)
                         if (this.touched.distance > 0 && this.position > 0) {
                             this.position--;
                             this.element.trigger('tileChange', this.position);
-                        } else if (this.touched.distance < 0 && this.position < this.tiles ) {
+                        } else if (this.touched.distance < 0 && this.position < (this.tiles -1) ) {
                             this.position++;
                             this.element.trigger('tileChange', this.position);
                         }

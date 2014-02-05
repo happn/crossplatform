@@ -29,7 +29,9 @@
 
 		setupRouting : function(){
 			this.router.route('select-mensa', function(){
-				this.view = new happn.Views.MensaChooser( this, $('.viewport') );
+				var $div = $('<div />');
+				$('.viewport').empty().append($div);
+				this.view = new happn.Views.MensaChooser( this, $div );
 			}.bind(this));
 
 			this.router.route('menu', function(){
