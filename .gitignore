@@ -7,3 +7,9 @@
 /platforms/android/assets/www
 /platforms/ios/www
 /www
+
+/platforms/android/out/production/android/android.apk
+
+/platforms/android/out/production/android/android.unaligned.apk
+
+/platforms/android/.idea/workspace.xml
