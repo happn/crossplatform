@@ -68,7 +68,7 @@
 				},
 
 				touchMove : function( event ){
-					//event.preventDefault();
+					event.preventDefault();
                     this.touched.moved = event.originalEvent.changedTouches[0].pageX - this.touched.start.x;
                     this.goTo(((this.touched.moved) - (this.position * this.tile.width)));
 				},

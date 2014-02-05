@@ -55,20 +55,15 @@
 			}, this);
 
 			this.$el.empty().html($baseTmpl);
-			
-			/*$('.viewport').cantTouchThis({
-				container: $baseTmpl.find('#days'),
-				tile : { width : $(window).width() },
-				tiles : 4
-			}).on('tileChange', this.updateNav.bind(this));*/
+			this.navigate(null, (new Date().getDay() - 1 ));
 		},
 
 		updateNav : function( event, nr ){
 			this.$el.find('.nav li').removeClass('active').eq(nr).addClass('active');
 		},
 
-		navigate : function( event ){
-			var index = $(event.currentTarget).data('index'),
+		navigate : function( event, index ){
+			var index = index || $(event.currentTarget).data('index'),
 				position = - index * $(window).width();
 
 			$('#days').css({ 
@@ -76,6 +71,7 @@
                 '-webkit-transition' :  '400ms cubic-bezier(0.1, 0.57, 0.1, 1)',
                 'transition' : '400ms cubic-bezier(0.1, 0.57, 0.1, 1)'
             });
+            $(document).scrollTop(true)
 
             this.updateNav(null, index);
             event.preventDefault();
