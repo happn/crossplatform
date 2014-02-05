@@ -145,6 +145,25 @@ h3 {
 	font-family: montserrat-bold;
 }
 
+#days > section {
+	width: 500%;
+}
+.day{
+	width: 20%;
+	float: left;
+}
+
+.viewport {
+	margin-top: 80px;
+}
+
+.header {
+	position: fixed;
+	background: #fff;
+	top: 0;
+	width: 100%;
+}
+
 /*---mensa chooser---*/
 .mensa-chooser{
 	font-family: montserrat-regular;

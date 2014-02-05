@@ -23,17 +23,30 @@
 
 			$baseTmpl.find('header').html($nav);
 			
-			response.data.slice(0, 4).forEach(function( day ){
+			response.data.slice(0, 5).forEach(function( day ){
 				var $day = this.$templates.menuDay(day),
 					$menus = $day.find('.menus');
 
 				//replace
 				$menus.append( this.templates.menuItem({ menu : day.menu_a }) );
 				$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
-				$baseTmpl.find('#wrapper').append($day);
+				//$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
+				//$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
+
+				$baseTmpl.find('#days > section').append($day);
 			}, this);
 
 			this.$el.empty().html($baseTmpl);
+			
+			$('.viewport').cantTouchThis({
+				container: $baseTmpl.find('#days'),
+				tile : { width : $(window).width() },
+				tiles : 4
+			}).on('tileChange', this.updateNav.bind(this));
+		},
+
+		updateNav : function( event, nr ){
+			this.$el.find('.nav li').removeClass('active').eq(nr).addClass('active');
 		},
 
 		timestamp : function(){
