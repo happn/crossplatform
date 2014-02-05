@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     // configurable paths
     var yeomanConfig = {
         app: 'app',
-        dist: 'dist'
+        dist: 'www'
     };
 
     grunt.initConfig({
@@ -248,11 +248,13 @@ module.exports = function (grunt) {
                     cwd: '<%= yeoman.app %>',
                     dest: '<%= yeoman.dist %>',
                     src: [
-                        '*.{ico,txt}',
+                        '*.{ico,txt,json,xml}',
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
-                        'styles/fonts/{,*/}*.*',
-                        'bower_components/sass-bootstrap/fonts/*.*'
+                        'styles/{,*/}*.*',
+                        'fonts/{,*/}*.*',
+                        'bower_components/{,*/}*.*',
+                        'scripts/{,*/}*.js'
                     ]
                 }]
             }
@@ -344,14 +346,13 @@ module.exports = function (grunt) {
         'clean:dist',
         'coffee',
         'createDefaultTemplate',
-        'jst',
         'compass:dist',
         'useminPrepare',
         'imagemin',
         'htmlmin',
-        'concat',
-        'cssmin',
-        'uglify',
+        /*'concat',*/
+        /*'cssmin',*/
+        /*'uglify',*/
         'copy',
         'rev',
         'usemin'
