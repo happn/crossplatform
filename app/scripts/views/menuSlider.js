@@ -1,7 +1,7 @@
 !function(){
 	happn.Views.MenuSlider = happn.Views.View.extend({
 		events : {
-			'click .nav li' : 'navigate'
+			'touchstart .nav li' : 'navigate'
 		},
 	
 		initialize : function( parent, $view ){
