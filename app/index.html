@@ -29,7 +29,7 @@
         <script type="text/template" id="template-menuNav">
                 <ul class="nav">
                     <% ["Mo", "Di", "Mi", "Do", "Fr"].forEach(function(day, i){ %>
-                    <li><a href="#"><div><%= day %></div><div class="header-day"><%= dates[i] %></div></a></li>
+                    <li data-index="<%= i %>"><a href="#"><div><%= day %></div><div class="header-day"><%= dates[i] %></div></a></li>
                     <% }); %>
                 </ul>
         </script>

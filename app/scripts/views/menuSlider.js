@@ -1,7 +1,9 @@
 !function(){
 	happn.Views.MenuSlider = happn.Views.View.extend({
+		events : {
+			'click .nav li' : 'navigate'
+		},
 	
-
 		initialize : function( parent, $view ){
 			this.$el = $view;
 			this.requireTemplate('menuNav', 'menuBase', 'menuDay', 'menuItem');
@@ -41,15 +43,29 @@
 
 			this.$el.empty().html($baseTmpl);
 			
-			$('.viewport').cantTouchThis({
+			/*$('.viewport').cantTouchThis({
 				container: $baseTmpl.find('#days'),
 				tile : { width : $(window).width() },
 				tiles : 4
-			}).on('tileChange', this.updateNav.bind(this));
+			}).on('tileChange', this.updateNav.bind(this));*/
 		},
 
 		updateNav : function( event, nr ){
 			this.$el.find('.nav li').removeClass('active').eq(nr).addClass('active');
+		},
+
+		navigate : function( event ){
+			var index = $(event.currentTarget).data('index'),
+				position = - index * $(window).width();
+
+			$('#days').css({ 
+                '-webkit-transform' : 'translate3d(' + position + 'px, 0, 0)',
+                '-webkit-transition' :  '400ms cubic-bezier(0.1, 0.57, 0.1, 1)',
+                'transition' : '400ms cubic-bezier(0.1, 0.57, 0.1, 1)'
+            });
+            this.updateNav(null, index);
+
+            event.preventDefault();
 		},
 
 		timestamp : function(){
