@@ -29,7 +29,7 @@
         <script type="text/template" id="template-menuNav">
                 <ul class="nav">
                     <% ["Mo", "Di", "Mi", "Do", "Fr"].forEach(function(day, i){ %>
-                    <li><a href="#"><div><%= day %></div><div class="header-day"><%= dates[i] %></div></a></li>
+                    <li data-index="<%= i %>"><a href="#"><div><%= day %></div><div class="header-day"><%= dates[i] %></div></a></li>
                     <% }); %>
                 </ul>
         </script>
@@ -52,16 +52,24 @@
         </script>
         <script type="text/template" id="template-menuItem">
             <div class="meal">
-                <% if(menu.images) { %>
-                    <div class="meal-picture">
-                        <img src="images/food.jpg">
-                        <div class="picture-gradient">
-                            <div class="poster-dude">
-                            POSTED BY SEPPSTER<img src="images/avatar.png">
+                    <div class="meal-pictures">
+                        <div class="meal-picture">
+                            <img src="images/food.jpg">
+                            <div class="picture-gradient">
+                                <div class="poster-dude">
+                                POSTED BY SEPPSTER<img src="images/avatar.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="meal-picture">
+                            <img src="images/food.jpg">
+                            <div class="picture-gradient">
+                                <div class="poster-dude">
+                                POSTED BY SEPPSTER<img src="images/avatar.png">
+                                </div>
                             </div>
                         </div>
                     </div>
-                <% } %>
                 <div class="meal-info">
                     <div class="meal-like">
                         <img src="images/herzle.png">
@@ -69,7 +77,10 @@
                             <a href="#"><%= menu.upvotes || menu.likes %></a>
                         </div>  
                     </div>
-                    <div class="meal-description"><%= menu.title %></div>
+                    <div class="meal-description">
+                        <h4><%= menu.name %></h4>
+                        <%= menu.title %>
+                    </div>
                 </div>
             </div>
         </script>

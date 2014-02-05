@@ -1,27 +1,32 @@
 @font-face {
-	font-family: montserrat-regular;
+	font-family: "montserrat-regular";
 	src: url('../fonts/Montserrat-Regular.ttf');
 }
 
 @font-face {
-	font-family: montserrat-bold;
+	font-family: "montserrat-bold";
 	src: url('../fonts/Montserrat-Bold.ttf');
 }
 
 @font-face {
-	font-family: aleo-regular;
+	font-family: "aleo-regular";
 	src: url('../fonts/Aleo-Regular.otf');
 }
 
+@font-face{
+	font-family: "aleo-bold";
+	src: url('../fonts/Aleo-Bold.otf');
+}
+
 body{
-	font-family: aleo-regular;
+	font-family: "aleo-regular";
 	font-size: 16px;
 	color:#373737;
 	margin:0;
 }
 
 h3 {
-	font-family: montserrat-bold;
+	font-family: "montserrat-bold";
 	text-transform: uppercase;
 	text-align: center;
 	font-size: 14px;
@@ -65,7 +70,7 @@ h3 {
     width: 100%;
     text-align: center;
 	padding-left: 0px;
-	font-family: montserrat-bold;
+	font-family: "montserrat-bold";
 	font-size:19px;
 }
 
@@ -85,17 +90,23 @@ h3 {
 
 .header-day{
 	font-size: 14px;
-	font-family: montserrat-regular;
+	font-family: "montserrat-regular";
 }
 
-.meal-picture{
+.meal-pictures{
 	position: relative;
 	text-align: center;
 	background: #000;
 	line-height: 10px;
 	color:#FFF;
-	font-family: montserrat-regular;
+	font-family: "montserrat-regular";
 	font-size: 14px;
+	width: 200%;
+}
+
+.meal-picture{
+	width:50%;
+	float: left;
 }
 
 .meal-picture img{
@@ -105,11 +116,13 @@ h3 {
 }
 
 .picture-gradient{
-	position: absolute;
+	position: relative;
 	bottom: 0px;
 	background-image: url(../images/picture-gradient.png);
 	background-repeat: repeat-x;
 	height: 112px;
+	width: inherit;
+	margin-top: -112px;
 	width: 100%;
 }
 
@@ -142,7 +155,7 @@ h3 {
 	top: 20%;
 	right: 6.25%;
 	font-size: 20px;
-	font-family: montserrat-regular;
+	font-family: "montserrat-regular";
 }
 
 .meal-like img{
@@ -167,15 +180,32 @@ h3 {
 
 .meal-description{
 	margin-left:7%;
-	font-family: aleo-regular;
+	font-family: "aleo-regular";
 	font-size: 14px;
+	line-height: 19px;
+	margin-bottom: 15px;
 }
 
 .meal-description h1{
 	margin-top: 15px;
 	margin-bottom: 5px;
 	font-size: 14px;
+	font-family: "montserrat-bold";
+}
+
+.meal-description b {
+	font-family: "aleo-bold";
+	line-height: 23px;
+}
+
+.meal{
+	overflow: hidden;
+}
+
+.meal h4 {
 	font-family: montserrat-bold;
+	font-size: 14px;
+	margin: 14px 0px 3px 0px;
 }
 
 #days > section {
@@ -195,6 +225,8 @@ h3 {
 	background: #fff;
 	top: 0;
 	width: 100%;
+	z-index: 10;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.43);
 }
 
 /*---mensa chooser---*/

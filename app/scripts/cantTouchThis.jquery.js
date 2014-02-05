@@ -1,11 +1,14 @@
 ;(function ( $, window, document, undefined ) {
 		// Create the defaults once
 		var pluginName = "cantTouchThis";
+        var isString = function (obj) {
+          return toString.call(obj) == '[object String]';
+        };
 
 		// The actual plugin constructor
 		function CantTouchThis ( element, options ) {
 			this.element = $(element);
-			this.container = $(options.container);
+			this.container = $(options.container || element);
 			this.touched = {
                 start : {
                     x : 0,
@@ -63,30 +66,39 @@
                         }
                     }
 
-                    this.container.css({ 
-                        '-webkit-transform' : 'translate3d(' + -(this.position * this.tile.width) + 'px, 0, 0)',
-                        '-webkit-transition' :  '400ms cubic-bezier(0.1, 0.57, 0.1, 1)',
-                        'transition' : '400ms cubic-bezier(0.1, 0.57, 0.1, 1)'
-                    });
+                    this.goTo(-(this.position * this.tile.width));
 				},
 
 				touchMove : function( event ){
 					event.preventDefault();
                     this.touched.moved = event.originalEvent.changedTouches[0].pageX - this.touched.start.x;
-                    
+                    this.goTo(((this.touched.moved) - (this.position * this.tile.width)));
+				},
+
+                tileGoTo : function( position ){
+                    console.log(position,this)
+                    this.goTo(-parseInt(position)*this.tile.width);
+                },
+
+                goTo : function( position ){
                     this.container.css({ 
-                        '-webkit-transform' : 'translate3d(' + ((this.touched.moved) - (this.position * this.tile.width)) + 'px, 0, 0)',
+                        '-webkit-transform' : 'translate3d(' + position + 'px, 0, 0)',
                         '-webkit-transition' :  '400ms cubic-bezier(0.1, 0.57, 0.1, 1)',
                         'transition' : '400ms cubic-bezier(0.1, 0.57, 0.1, 1)'
                     });
-				}
+                }
 		};
 
-		$.fn[ pluginName ] = function ( options ) {
+		$.fn[ pluginName ] = function ( options, opt_arg ) {
 				this.each(function() {
-					if ( !$.data( this, "plugin_" + pluginName ) ) {
+                    var instance = $.data( this, "plugin_" + pluginName );
+					if ( !instance ) {
 						$.data( this, "plugin_" + pluginName, new CantTouchThis( this, options ) );
-					}
+					} else if( isString(options) && opt_arg != null ){
+                        if(options == "goTo"){
+                            instance.tileGoTo.call(instance, opt_arg)
+                        }
+                    }
 				});
 
 				// chain jQuery functions
