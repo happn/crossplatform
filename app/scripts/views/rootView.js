@@ -6,7 +6,6 @@
 		currentUser : null, 
 
 		initialize : function( options ){
-			alert(navigator.userAgent.toLowerCase());
 			this.currentMensa = this.getStorage("mensa");
 			this.currentUser = this.getStorage("user");
 

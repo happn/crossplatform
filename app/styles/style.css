@@ -151,14 +151,15 @@ h3 {
 .meal-info{
 	clear:both;
 	position: relative;
+	background: #fff;
 }
 
-.meal-like{
-	position: absolute;
-	top: 20%;
-	right: 6.25%;
+.meal-like {
 	font-size: 20px;
 	font-family: "montserrat-regular";
+	float: right;
+	padding-right: 6%;
+	padding-top: 10%;
 }
 
 .meal-like img{
@@ -169,6 +170,7 @@ h3 {
 .meal-like a{
 	color:#eb6148;
 	text-decoration: none;
+	font-size: 15px;
 }
 
 .meal-like-circle{
@@ -189,6 +191,8 @@ h3 {
 	padding-left: 15px;
 	padding-top: 12px;
 	padding-bottom: 20px;
+	width: 70%;
+	box-sizing: border-box;
 }
 
 .meal-description h1{
@@ -208,7 +212,7 @@ h3 {
 }
 
 .meal h4 {
-	font-family: montserrat-bold;
+	font-family: "montserrat-bold";
 	font-size: 14px;
 	margin: 0px 0px 3px 0px;
 	text-transform: uppercase;
@@ -237,8 +241,32 @@ h3 {
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.43);
 }
 
+.iOS .header{
+	padding-top:10px;
+}
+
 .menus {
 	background: #161616;
+}
+
+.dot {
+	display: inline-block;
+	width: 3px;
+	height: 3px;
+	float: right;
+	background: #fff;
+	border: 2px solid #fff;
+	border-radius: 10px;
+	margin-right: 10px;
+}
+
+.meal-dots{
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	padding: 10px 5px 0px 0px;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
 /*---mensa chooser---*/

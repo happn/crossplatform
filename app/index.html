@@ -8,6 +8,9 @@
         <title>happn crossplatform</title>
 		<link rel="stylesheet" href="styles/style.css">
 		<script src="bower_components/modernizr/modernizr.js"></script>
+        <script type="text/javascript">
+            navigator.userAgent.toLowerCase().indexOf('iphone') && document.documentElement.classList.add('iOS');
+        </script>
     </head>
     <body>
     	<section class="viewport"></section>
@@ -52,6 +55,10 @@
         </script>
         <script type="text/template" id="template-menuItem">
             <div class="meal">
+                    <div class="meal-dots">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
                     <div class="meal-pictures">
                         <div class="meal-picture">
                             <img src="images/food.jpg">
@@ -74,7 +81,7 @@
                     <div class="meal-like">
                         <img src="images/herzle.png">
                         <div class="meal-like-circle">
-                            <a href="#"><%= menu.upvotes || menu.likes %></a>
+                            <a href="#"><%= menu.likes || menu.up_votes %></a>
                         </div>  
                     </div>
                     <div class="meal-description">
