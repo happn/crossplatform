@@ -44,8 +44,8 @@
 
 		close : function(){
 			if(this.mensa){
-				this.parent.trigger('navigate', 'menu');
 				this.remove();
+				this.parent.trigger('navigate', 'menu');
 			}
 		}
 	})
