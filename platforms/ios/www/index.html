@@ -1,6 +1,91 @@
-<!doctype html><!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--><!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]--><!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]--><!--[if gt IE 8]><!--><html class="no-js" ng-app="yoApp"><!--<![endif]--><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title></title><meta name="description" content=""><meta name="viewport" content="width=device-width"><!-- Place favicon.ico and apple-touch-icon.png in the root directory --><link rel="stylesheet" href="styles/6a63dbfa.vendor.css"><link rel="stylesheet" href="styles/9a686d0f.main.css"><body><!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]--><div class="header navbar-fixed-top"><ul class="nav nav-pills pull-right"><li class="active"><a ng-href="#">Home</a></li><li><a ng-href="#">About</a></li><li><a ng-href="#">Contact</a></li></ul><h3 class="text-muted">yo</h3></div><!-- Add your site or application content here --><snap-content><div class="content" ng-view=""></div></snap-content><snap-drawer><div class="menu-left"><h1>Demo</h1><ul><li><a ng-href="#">Link 1</a></li><li><a ng-href="#">Link 2</a></li><li><a ng-href="#">Link 3</a></li></ul></div></snap-drawer><!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]--><!-- cordova --><!-- <script type="text/javascript" src="scripts/cordova.js"></script> --><script src="scripts/73857555.vendor.js"></script><script src="scripts/87d788d1.scripts.js"></script>
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0 user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <title>happn crossplatform</title>
+		<link rel="stylesheet" href="styles/e4318e06.style.css">
+		<script src="bower_components/modernizr/modernizr.js"></script>
+    </head>
+    <body>
+    	<section class="viewport"></section>
+
+        <script type="text/template" id="template-mensen">
+            <h3>Mensa wählen</h3>
+            <div class="mensa-chooser">
+                <ul>
+                    <%  mensen.forEach(function( mensa ){ %>
+                        <li data-id="<%= mensa.id %>">
+                            <a href="/select-mensa/<%= mensa.name %>"><%= mensa.name %></a>
+                        </li>
+                    <% }); %>
+                </ul>
+
+                <button class="btn btn-primary">Los gehts</button>
+            </div>
+        </script>
+        <script type="text/template" id="template-menuNav">
+                <ul class="nav">
+                    <% ["Mo", "Di", "Mi", "Do", "Fr"].forEach(function(day, i){ %>
+                    <li><a href="#"><div><%= day %></div><div class="header-day"><%= dates[i] %></div></a></li>
+                    <% }); %>
+                </ul>
+        </script>
+
+        <script type="text/template" id="template-menuBase">
+            <div >
+                <header class="header"></header>
+                <div id="days">
+                    <section></section>
+                </div>
+            </div>
+        </script>
+        <script type="text/template" id="template-menuDay">
+            <section class="day" data-date="<%= date %>">
+                <section class="content">
+                    <section class="menus scrollable">
+                    </section>
+                </section>
+            </section>
+        </script>
+        <script type="text/template" id="template-menuItem">
+            <div class="meal">
+                <% if(menu.images) { %>
+                    <div class="meal-picture">
+                        <img src="images/c1856906.food.jpg">
+                        <div class="picture-gradient">
+                            <div class="poster-dude">
+                            POSTED BY SEPPSTER<img src="images/014031cf.avatar.png">
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="meal-info">
+                    <div class="meal-like">
+                        <img src="images/66b56a8a.herzle.png">
+                        <div class="meal-like-circle">
+                            <a href="#"><%= menu.upvotes || menu.likes %></a>
+                        </div>  
+                    </div>
+                    <div class="meal-description"><%= menu.title %></div>
+                </div>
+            </div>
+        </script>
+    
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <script src="scripts/83ed8e1a.cantTouchThis.jquery.js"></script>
+    
+        <script src="scripts/59a9183b.main.js"></script>
+        <script src="scripts/views/b8b87dc1.view.js"></script>
+        <script src="scripts/views/4ee5f5b0.mensaChooser.js"></script>
+        <script src="scripts/views/b9dc4d6c.menuSlider.js"></script>
+        <script src="scripts/views/86acabbf.rootView.js"></script>
+        <script>
+            new happn.Views.RootView();
+        </script>
+    </body>
+</html>

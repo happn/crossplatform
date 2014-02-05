@@ -1,43 +1,91 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
+<!doctype html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0 user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <title>happn crossplatform</title>
+		<link rel="stylesheet" href="styles/e4318e06.style.css">
+		<script src="bower_components/modernizr/modernizr.js"></script>
     </head>
     <body>
-        <div class="app">
-            <h1>Zentur Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+    	<section class="viewport"></section>
+
+        <script type="text/template" id="template-mensen">
+            <h3>Mensa wählen</h3>
+            <div class="mensa-chooser">
+                <ul>
+                    <%  mensen.forEach(function( mensa ){ %>
+                        <li data-id="<%= mensa.id %>">
+                            <a href="/select-mensa/<%= mensa.name %>"><%= mensa.name %></a>
+                        </li>
+                    <% }); %>
+                </ul>
+
+                <button class="btn btn-primary">Los gehts</button>
             </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
+        </script>
+        <script type="text/template" id="template-menuNav">
+                <ul class="nav">
+                    <% ["Mo", "Di", "Mi", "Do", "Fr"].forEach(function(day, i){ %>
+                    <li><a href="#"><div><%= day %></div><div class="header-day"><%= dates[i] %></div></a></li>
+                    <% }); %>
+                </ul>
+        </script>
+
+        <script type="text/template" id="template-menuBase">
+            <div >
+                <header class="header"></header>
+                <div id="days">
+                    <section></section>
+                </div>
+            </div>
+        </script>
+        <script type="text/template" id="template-menuDay">
+            <section class="day" data-date="<%= date %>">
+                <section class="content">
+                    <section class="menus scrollable">
+                    </section>
+                </section>
+            </section>
+        </script>
+        <script type="text/template" id="template-menuItem">
+            <div class="meal">
+                <% if(menu.images) { %>
+                    <div class="meal-picture">
+                        <img src="images/c1856906.food.jpg">
+                        <div class="picture-gradient">
+                            <div class="poster-dude">
+                            POSTED BY SEPPSTER<img src="images/014031cf.avatar.png">
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="meal-info">
+                    <div class="meal-like">
+                        <img src="images/66b56a8a.herzle.png">
+                        <div class="meal-like-circle">
+                            <a href="#"><%= menu.upvotes || menu.likes %></a>
+                        </div>  
+                    </div>
+                    <div class="meal-description"><%= menu.title %></div>
+                </div>
+            </div>
+        </script>
+    
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <script src="scripts/83ed8e1a.cantTouchThis.jquery.js"></script>
+    
+        <script src="scripts/59a9183b.main.js"></script>
+        <script src="scripts/views/b8b87dc1.view.js"></script>
+        <script src="scripts/views/4ee5f5b0.mensaChooser.js"></script>
+        <script src="scripts/views/b9dc4d6c.menuSlider.js"></script>
+        <script src="scripts/views/86acabbf.rootView.js"></script>
+        <script>
+            new happn.Views.RootView();
         </script>
     </body>
 </html>
