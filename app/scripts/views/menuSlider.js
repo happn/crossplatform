@@ -28,6 +28,9 @@
 					$menus = $day.find('.menus');
 
 				//replace
+				day.menu_a.name = "Menü A";
+				day.menu_b.name = "Menü B";
+
 				$menus.append( this.templates.menuItem({ menu : day.menu_a }) );
 				$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
 				//$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
