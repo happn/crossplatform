@@ -55,6 +55,7 @@
         </script>
         <script type="text/template" id="template-menuItem">
             <div class="meal">
+                    <h4><%= menu.name %></h4>
                     <div class="meal-dots">
                         <span class="dot"></span>
                         <span class="dot"></span>
@@ -85,7 +86,6 @@
                         </div>  
                     </div>
                     <div class="meal-description">
-                        <h4><%= menu.name %></h4>
                         <%= menu.title %>
                     </div>
                 </div>
@@ -96,8 +96,10 @@
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="scripts/cantTouchThis.jquery.js"></script>
+        <script src="scripts/spring.js"></script>
     
         <script src="scripts/main.js"></script>
+        <script src="scripts/utils.js"></script>
         <script src="scripts/views/view.js"></script>
         <script src="scripts/views/mensaChooser.js"></script>
         <script src="scripts/views/menuSlider.js"></script>

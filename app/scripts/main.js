@@ -2,5 +2,6 @@ window.happn = {
     Models: {},
     Collections: {},
     Views: {},
-    Routers: {}
+    Routers: {},
+    Utils : {}
 };
