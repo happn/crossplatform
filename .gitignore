@@ -13,3 +13,5 @@
 /platforms/android/out/production/android/android.unaligned.apk
 
 /platforms/android/.idea/workspace.xml
+
+/platforms/ios/Happn.xcodeproj/project.xcworkspace/xcuserdata/zentur.xcuserdatad/UserInterfaceState.xcuserstate
