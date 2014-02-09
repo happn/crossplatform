@@ -220,14 +220,22 @@ h3 {
 	font-size: 15px;
 }
 
+.liked .meal-like-circle{
+	background: #eb6148;
+}
+
 .meal-like-circle{
 	display: inline-block;
 	width: 38px;
 	height: 38px;
 	line-height: 37px;
 	border-radius: 9999px;
-	border: 2px solid #eb6148;
+	border:	2px solid #eb6148;
 	text-align: center;
+}
+
+.liked .meal-like-circle a{
+	color:#fff;
 }
 
 .meal-camera-circle{

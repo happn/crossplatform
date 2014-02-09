@@ -8,6 +8,7 @@
 			'touchstart .nav li' : 'navigate',
 			'click #make-photo' : 'isLoggedIn'
 			'touchstart .no-image' : 'isLoggedIn'
+			'touchstart .meal-like' : 'like'
 		},
 	
 		initialize : function( parent, $view, mensa ){
@@ -29,6 +30,7 @@
 
 			var $nav = this.$templates.menuNav({ dates : dates, mensa : this.mensa.name }),
 				$baseTmpl = this.$templates.menuBase(),
+				likes = this.getStorage('likes'),
 				self = this;
 
 			$baseTmpl.find('header').html($nav);
@@ -43,6 +45,11 @@
 					menu.menu = menu.menu.replace(/kein Angebot/g, '');
 
 					var $menu = this.$templates.menuItem({ menu : menu });
+
+					if( likes.indexOf(menu.mid) > -1 ){
+						$menu.find('.meal-like').addClass('liked');
+					}
+
 					$day.append($menu);
 				}, this)
 
@@ -211,6 +218,33 @@
   				year = d.getFullYear();
 
 			return (day < 10 ? '0' : '') + day + (month < 10 ? '0' : '') + month + year;
+		},
+
+		like : function( event ){
+			var $target = $(event.currentTarget),
+				mid = $target.data('mid'),
+				likesCount = $target.data('likes'),
+				likes = this.getStorage('likes') || [],
+				hadAlreadyLiked = likes.indexOf(mid) != -1;
+
+			$.post('https://appserver.happn.de/v2/' + (hadAlreadyLiked ? 'unlike' : 'like') + '/' + mid);
+
+			if( hadAlreadyLiked ){
+				var index = likes.indexOf(mid);
+				likes.splice(index,  1);
+				$target.removeClass('liked');
+				likesCount--;
+			} else {
+				likes.push(mid)
+				$target.addClass('liked');
+				likesCount++;
+			}
+			
+			$target.data('likes', likesCount);
+			$target.find('.meal-like-circle a').text(likesCount);
+			this.setStorage("likes", likes);
+
+
 		},
 	});
 }();
