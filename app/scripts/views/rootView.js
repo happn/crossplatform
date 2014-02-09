@@ -35,11 +35,11 @@
 			}.bind(this));
 
 			this.router.route('show-map', function(){
-				this.view = new happn.Views.MensaChooser( this, $('.viewport') );
+				this.view = new happn.Views.MensaChooser( this, $('.viewport'), this.currentMensa);
 			}.bind(this));
 
 			this.router.route('menu', function(){
-				this.view = new happn.Views.MenuSlider( this, $('.viewport') ); 
+				this.view = new happn.Views.MenuSlider( this, $('.viewport'), this.currentMensa); 
 			}.bind(this));
 
 			Backbone.history.start(); 
