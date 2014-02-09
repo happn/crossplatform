@@ -73,7 +73,7 @@
 			});
 
 			// if date > 4 ? date = 4
-			this.navigate(null, Math.min(4, new Date().getDay() ));
+			this.navigate(null, Math.min(4, new Date().getDay() -1 ));
 		},
 
 		isLoggedIn: function(){
@@ -92,13 +92,13 @@
 
 			$.blockUI({ message: $('#question'), css: { width: '75%', left:'12.5%', top:'15%' } });
 
-			$('#yes').click(function() { 
+			$('#yes').click(function( event ) { 
+				event.preventDefault();
+
 				$.ajax({method:'POST', url: 'https://app.heythere.de/user/login.json', data: {password: $('#inputPassword').val(), emailOrUsername: $('#inputEmail').val()}, success: function(){
 					self.showPhoto();
-					
 				}, error: function(xhr, status, error){
-					console.log(status);
-					console.log(error);
+					
 				}});
 
 				$.unblockUI(); 
@@ -117,7 +117,7 @@
 
 			function onSuccess(imageURI) {
 				var image = document.getElementById('myImage');
-				image.src = imageURI;
+					image.src = imageURI;
 
 				self.uploadPhoto(image)
 			}
@@ -126,12 +126,14 @@
 				alert('Failed because: ' + message);
 			}
 
-			navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
-    		destinationType: Camera.DestinationType.FILE_URI }); 
+			navigator.camera.getPicture(onSuccess, onFail, { 
+				quality: 50, 
+    			destinationType: Camera.DestinationType.FILE_URI 
+    		}); 
 		},
 
 		uploadPhoto: function(image){
-			
+				
 		},
 
 		addSpring : function( $elem ){
