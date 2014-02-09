@@ -96,6 +96,11 @@
                             <a href="#"><%= menu.likes || menu.up_votes %></a>
                         </div>  
                     </div>
+                    <div class="meal-picture-posting">
+                        <div class="meal-camera-circle">
+                            <a href="#"><img src="images/foto.png"></a>
+                        </div>  
+                    </div>
                     <div class="meal-description">
                         <%= menu.title %>
                     </div>
@@ -103,13 +108,14 @@
             </div>
         </script>
 
-        <script src="../platform/js/libs/cordova.js"></script>
+        <script src="cordova.js"></script>
         <script src="bower_components/jquery/jquery.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/blockui/jquery.blockUI.js"></script>
         <script src="scripts/cantTouchThis.jquery.js"></script>
         <script src="scripts/spring.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAqk7HxjNAv9Ws9SQYpWQHdbk9ayYtKsF8&sensor=false&language=de"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAqk7HxjNAv9Ws9SQYpWQHdbk9ayYtKsF8&sensor=false&language=de"></script>
         <script src="scripts/main.js"></script>
         <script src="scripts/utils.js"></script>
         <script src="scripts/views/view.js"></script>
