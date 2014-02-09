@@ -9,44 +9,41 @@
 			'click #make-photo' : 'showPhoto'
 		},
 	
-		initialize : function( parent, $view ){
+		initialize : function( parent, $view, mensa ){
 			this.$el = $view;
+			this.mensa = mensa;
 			this.requireTemplate('menuNav', 'menuBase', 'menuDay', 'menuItem');
 			this.fetch();
 		},
 
 		fetch : function(){
-			$.getJSON("http://appserver.happn.de:8010/v1/week/" + this.timestamp(),
+			$.getJSON("http://appserver.happn.de:8010/v2/week/" + this.mensa.id + "/" + this.timestamp(),
 				this.render.bind(this))
 		},
 
 		render : function( response ){
 			var dates = _.pluck(response.data, 'date').map(function(d){ 
-				return d.split('/')[1];
+				return d.split('.')[0];
 			});
 
-			var $nav = this.$templates.menuNav({ dates : dates}),
+			var $nav = this.$templates.menuNav({ dates : dates, mensa : this.mensa.name }),
 				$baseTmpl = this.$templates.menuBase(),
 				self = this;
 
 			$baseTmpl.find('header').html($nav);
 			
-			response.data.slice(0, 5).forEach(function( day ){
+			response.data.forEach(function( day ){
 				var $day = this.$templates.menuDay(day),
 					$menus = $day.find('.menus');
-
-				//replace
-				day.menu_a.name = "Menü A";
-				day.menu_b.name = "Menü B";
-
-				var $menu_a = this.$templates.menuItem({ menu : day.menu_a });
-				var $menu_b = this.$templates.menuItem({ menu : day.menu_b });
-
-				$menus.prepend($menu_b  );
-				$menus.prepend($menu_a  );
-				//$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
-				//$menus.append( this.templates.menuItem({ menu : day.menu_b }) );
 				
+				day.menus.forEach( function( menu ){
+					menu.menu = menu.menu.replace('*', '<br><b>');
+					menu.menu = menu.menu.replace('*', '</b><br>')
+					menu.menu = menu.menu.replace(/kein Angebot/g, '');
+
+					var $menu = this.$templates.menuItem({ menu : menu });
+					$day.append($menu);
+				}, this)
 
 				$baseTmpl.find('#days > section').append($day);
 			}, this);
@@ -168,8 +165,12 @@
 		},
 
 		timestamp : function(){
-			var d = new Date(),
-  				day = d.getDate(),
+			var d = new Date();
+			
+			if( d.getDay() === 0){ d = new Date( Date.now() + 24*60*60*1000); }
+			if( d.getDay() === 6){ d = new Date( Date.now() + 24*60*60*1000*2)}
+
+			var day = d.getDate(),
   				month = d.getMonth() + 1,
   				year = d.getFullYear();
 

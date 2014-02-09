@@ -48,6 +48,7 @@
             </div>
         </script>
         <script type="text/template" id="template-menuNav">
+                <h2><%= mensa %></h2>
                 <ul class="nav">
                     <% ["Mo", "Di", "Mi", "Do", "Fr"].forEach(function(day, i){ %>
                     <li data-index="<%= i %>"><a href="#"><div><%= day %></div><div class="header-day"><%= dates[i] %></div></a></li>
@@ -72,35 +73,39 @@
             </section>
         </script>
         <script type="text/template" id="template-menuItem">
+            <% var hasImage = menu.pictures.length; %>
             <div class="meal">
                     <h4><%= menu.name %></h4>
                     <div class="meal-dots">
-                        <span class="dot"></span>
-                        <span class="dot"></span>
+                        <% if(hasImage){ %>
+                            <% var len = menu.pictures.length; while(len--){ %>
+                                <span class="dot"></span>
+                            <% } %>
+                        <% } %>
                     </div>
                     <div class="meal-pictures">
-                        <div class="meal-picture">
-                            <img src="images/food.jpg">
-                            <div class="picture-gradient">
-                                <div class="poster-dude">
-                                POSTED BY SEPPSTER<img src="images/avatar.png">
+                        <% if(hasImage){ %>
+                            <% menu.pictures.forEach(function( picture ){ %>
+                                <div class="meal-picture">
+                                    <img src="images/food.jpg">
+                                    <div class="picture-gradient">
+                                        <div class="poster-dude">
+                                        POSTED BY SEPPSTER<img src="images/avatar.png">
+                                        </div>
+                                    </div>
                                 </div>
+                           <% }); %>
+                        <% } else { %>
+                            <div class="no-image">
+                                <span>Mache eine Bild</span>
                             </div>
-                        </div>
-                        <div class="meal-picture">
-                            <img src="images/food.jpg">
-                            <div class="picture-gradient">
-                                <div class="poster-dude">
-                                POSTED BY SEPPSTER<img src="images/avatar.png">
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
                 <div class="meal-info">
                     <div class="meal-like">
                         <img src="images/herzle.png">
                         <div class="meal-like-circle">
-                            <a href="#"><%= menu.likes || menu.up_votes %></a>
+                            <a href="#"><%= menu.likes.length %></a>
                         </div>  
                     </div>
                     <div class="meal-picture-posting">
@@ -109,7 +114,7 @@
                         </div>  
                     </div>
                     <div class="meal-description">
-                        <%= menu.title %>
+                        <%= menu.menu %>
                     </div>
                 </div>
             </div>
@@ -129,9 +134,6 @@
         <script src="scripts/views/mensaChooser.js"></script>
         <script src="scripts/views/menuSlider.js"></script>
         <script src="scripts/views/rootView.js"></script>
-        <script>
-            new happn.Views.RootView();
-        </script>
         <script type="text/javascript">
             /** Converts numeric degrees to radians */
             if (typeof(Number.prototype.toRad) === "undefined") {
@@ -139,6 +141,9 @@
                 return this * Math.PI / 180;
               }
             }
+        </script>
+        <script>
+            new happn.Views.RootView();
         </script>
     </body>
 </html>
