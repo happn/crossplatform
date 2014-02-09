@@ -69,20 +69,28 @@
 		},
 
 		showPhoto : function (){
+
+			function onSuccess(imageURI) {
+				var image = document.getElementById('myImage');
+				image.src = imageURI;
+			}
+
+			function onFail(message) {
+				alert('Failed because: ' + message);
+			}
+
 			$.blockUI({ message: $('#question'), css: { width: '275px' } });
 
 			$('#yes').click(function() { 
-	            // update the block message 
-	            $.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
-	 
-	            $.ajax({ 
-	                url: 'wait.php', 
-	                cache: false, 
-	                complete: function() { 
-	                    // unblock when remote call returns 
-	                    $.unblockUI(); 
-	                } 
-	            }); 
+
+				navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
+    			destinationType: Camera.DestinationType.FILE_URI }); 
+	            
+				
+
+				
+
+	            $.unblockUI(); 
         	}); 
  
 	        $('#no').click(function() { 

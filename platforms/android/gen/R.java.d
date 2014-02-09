@@ -1,4 +1,4 @@
-/Users/zentur/Documents/Projects/happn-crossplatform/platforms/android/gen/io/cordova/hellocordova/R.java \
+/Users/zentur/Documents/Projects/happn-crossplatform/platforms/android/gen/de/zencoding/happn/R.java \
  : /Users/zentur/Documents/Projects/happn-crossplatform/platforms/android/res/drawable/icon.png \
 /Users/zentur/Documents/Projects/happn-crossplatform/platforms/android/res/drawable-hdpi/icon.png \
 /Users/zentur/Documents/Projects/happn-crossplatform/platforms/android/res/drawable-ldpi/icon.png \
