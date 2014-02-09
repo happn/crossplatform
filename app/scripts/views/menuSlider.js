@@ -112,28 +112,32 @@
 		},
 
 		showPhoto : function (){
-
-			self = this;
-
-			function onSuccess(imageURI) {
-				var image = document.getElementById('myImage');
-					image.src = imageURI;
-
-				self.uploadPhoto(image)
-			}
-
-			function onFail(message) {
+			navigator.camera.getPicture(this.uploadPhoto.bind(this), function(){
 				alert('Failed because: ' + message);
-			}
-
-			navigator.camera.getPicture(onSuccess, onFail, { 
+			}, { 
 				quality: 50, 
     			destinationType: Camera.DestinationType.FILE_URI 
     		}); 
 		},
 
 		uploadPhoto: function(image){
-				
+			var options = new FileUploadOptions();
+			  	options.fileKey = "meta[image]";
+			  	options.fileName = "";
+			  	options.mimeType = "image/jpeg";
+			  	options.params = {
+			  		content : "",
+			  		venue : {
+			  			"foursquare_id" : this.mensa.id
+			  		}
+			  	};
+
+		 	var ft = new FileTransfer();
+		  	ft.upload(image, 'https://app.heythere.de/posts/', function(){
+		  		alert(arguments)
+		  	}, function(){
+		  		alert(arguments)
+		  	}, options);
 		},
 
 		addSpring : function( $elem ){
