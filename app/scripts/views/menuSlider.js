@@ -30,7 +30,7 @@
 
 			var $nav = this.$templates.menuNav({ dates : dates, mensa : this.mensa.name }),
 				$baseTmpl = this.$templates.menuBase(),
-				likes = this.getStorage('likes'),
+				likes = this.getStorage('likes') || [],
 				self = this;
 
 			$baseTmpl.find('header').html($nav);
@@ -46,7 +46,7 @@
 
 					var $menu = this.$templates.menuItem({ menu : menu });
 
-					if( likes.indexOf(menu.mid) > -1 || []){
+					if( likes.indexOf(menu.mid) > -1){
 						$menu.find('.meal-like').addClass('liked');
 					}
 
