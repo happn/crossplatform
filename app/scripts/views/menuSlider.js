@@ -7,7 +7,7 @@
 		events : {
 			'touchstart .nav li' : 'navigate',
 			'touchstart #make-photo' : 'isLoggedIn',
-			'touchstart .no-image' : 'isLoggedIn',
+			'click .no-image' : 'isLoggedIn',
 			'touchstart .meal-like' : 'like'
 		},
 	
@@ -229,7 +229,9 @@
 				likes = this.getStorage('likes') || [],
 				hadAlreadyLiked = likes.indexOf(mid) != -1;
 
-			$.post('https://appserver.happn.de/v2/' + (hadAlreadyLiked ? 'unlike' : 'like') + '/' + mid);
+			$.post('http://appserver.happn.de:8010/v2/' + (hadAlreadyLiked ? 'unlike' : 'like') + '/' + mid + ".json").done(function(data){
+				alert(data);
+			});
 
 			if( hadAlreadyLiked ){
 				var index = likes.indexOf(mid);
