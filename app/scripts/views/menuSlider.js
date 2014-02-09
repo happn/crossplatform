@@ -6,8 +6,8 @@
 
 		events : {
 			'touchstart .nav li' : 'navigate',
-			'click #make-photo' : 'isLoggedIn'
-			'touchstart .no-image' : 'isLoggedIn'
+			'touchstart #make-photo' : 'isLoggedIn',
+			'touchstart .no-image' : 'isLoggedIn',
 			'touchstart .meal-like' : 'like'
 		},
 	
