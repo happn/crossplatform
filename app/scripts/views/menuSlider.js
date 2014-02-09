@@ -6,7 +6,7 @@
 
 		events : {
 			'touchstart .nav li' : 'navigate',
-			'click #make-photo' : 'showPhoto'
+			'click #make-photo' : 'isLoggedIn'
 		},
 	
 		initialize : function( parent, $view ){
@@ -71,35 +71,62 @@
 			this.navigate(null, Math.min(4, new Date().getDay() ));
 		},
 
-		showPhoto : function (){
+		isLoggedIn: function(){
 
-			function onSuccess(imageURI) {
-				var image = document.getElementById('myImage');
-				image.src = imageURI;
-			}
+			var self = this
 
-			function onFail(message) {
-				alert('Failed because: ' + message);
-			}
+			$.ajax({method:'GET', url: 'https://app.heythere.de/user/loggedIn.json', success: function(){
+				self.showPhoto();
+			}, error: function(){
+				self.loggIn();
+			}});
+		},
 
-			$.blockUI({ message: $('#question'), css: { width: '275px' } });
+		loggIn: function(){
+			var self = this
+
+			$.blockUI({ message: $('#question'), css: { width: '75%', left:'12.5%', top:'15%' } });
 
 			$('#yes').click(function() { 
+				$.ajax({method:'POST', url: 'https://app.heythere.de/user/login.json', data: {password: $('#inputPassword').val(), emailOrUsername: $('#inputEmail').val()}, success: function(){
+					self.showPhoto();
+					
+				}, error: function(xhr, status, error){
+					console.log(status);
+					console.log(error);
+				}});
 
-				navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
-    			destinationType: Camera.DestinationType.FILE_URI }); 
-	            
-				
-
-				
-
-	            $.unblockUI(); 
+				$.unblockUI(); 
+	            return true;
         	}); 
  
 	        $('#no').click(function() { 
 	            $.unblockUI(); 
 	            return false; 
 	        });
+		},
+
+		showPhoto : function (){
+
+			self = this;
+
+			function onSuccess(imageURI) {
+				var image = document.getElementById('myImage');
+				image.src = imageURI;
+
+				self.uploadPhoto(image)
+			}
+
+			function onFail(message) {
+				alert('Failed because: ' + message);
+			}
+
+			navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
+    		destinationType: Camera.DestinationType.FILE_URI }); 
+		},
+
+		uploadPhoto: function(image){
+			
 		},
 
 		addSpring : function( $elem ){

@@ -28,5 +28,11 @@ module.exports = [
             "CameraPopoverHandle"
         ]
     }
-]
+];
+module.exports.metadata = 
+// TOP OF METADATA
+{
+    "org.apache.cordova.camera": "0.2.6"
+}
+// BOTTOM OF METADATA
 });

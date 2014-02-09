@@ -16,9 +16,30 @@
     	<section class="viewport"></section>
 
         <div id="question" style="display:none; cursor:default"> 
-            <h1>Would you like to contine?.</h1> 
-            <input type="button" id="yes" value="Yes" /> 
-            <input type="button" id="no" value="No" /> 
+            <h1>Heythere Login</h1>
+            <p>Um Bilder teilen zu können musst du dich mit deinem
+            Heythere Login anmelden </p> 
+
+            <form class="form-horizontal" method="post" action="#">
+                <div class="control-group">
+                <label class="control-label" for="inputEmail">Email/Username</label>
+                <div class="controls">
+                  <input type="text" id="inputEmail" name="emailOrUsername" placeholder="Email">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="inputPassword">Password</label>
+                <div class="controls">
+                  <input type="password" id="inputPassword" placeholder="Password" name="password">
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                    <button class="btn btn-primary btn-nope" id="no">Abbrechen</button>
+                    <button type="submit" class="btn btn-primary btn-yep" id="yes">Login</button>
+                </div>
+              </div>
+            </form>
         </div>
 
         <script type="text/template" id="template-mensen">
