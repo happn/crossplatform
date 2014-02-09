@@ -46,7 +46,7 @@
 
 					var $menu = this.$templates.menuItem({ menu : menu });
 
-					if( likes.indexOf(menu.mid) > -1 ){
+					if( likes.indexOf(menu.mid) > -1 || []){
 						$menu.find('.meal-like').addClass('liked');
 					}
 
