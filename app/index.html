@@ -15,11 +15,13 @@
     <body>
     	<section class="viewport"></section>
         <script type="text/template" id="template-mensen">
-            <h3>Mensa wählen</h3>
+            <h3>Mensa nach Position bestimmen</h3>
             <div class="mensa-chooser">
-                <p>Mensa anhand deiner Position bestimmen</p>
-                    <button class="btn btn-primary position">Los gehts</button>
-                <p>Mensa direkt auswählen</p>
+                <p>Du bist verwirrt und weisst nicht mehr wo deine Mensa ist?</p>
+                <button class="btn btn-primary position">Los gehts</button>
+                <p>&nbsp;</p>
+                <h3>Mensa direkt auswählen</h3>
+                <p>Wenn du schon genau weisst wo deine Mensa ist wähle einfach direkt.</p>
                 <ul>
                     <%  mensen.forEach(function( mensa ){ %>
                         <li data-id="<%= mensa.id %>">
@@ -27,11 +29,16 @@
                         </li>
                     <% }); %>
                 </ul>
-                <button class="btn btn-primary direct">Los gehts</button>
             </div>
         </script>
         <script type="text/template" id="template-map">
             <div id="map-panel" style="width:device-width; height:450px;"></div>
+
+            <h3>Ist das die richtige Mensa?</h3>
+            <div class="sauCoolesButtonDiv">
+                <button class="btn btn-primary btn-nope back">Äh nee</button>
+                <button class="btn btn-primary btn-yep direct">Yup passt!</button>
+            </div>
         </script>
         <script type="text/template" id="template-menuNav">
                 <ul class="nav">

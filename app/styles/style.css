@@ -65,6 +65,12 @@ h3 {
 	border-color: #c3513c;
 }
 
+.btn-yep{
+	margin-left:10px;
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+}
+
 .nav{
 	display: table;
     width: 100%;
@@ -89,6 +95,10 @@ h3 {
 
 .nav li.active a{
 	color:#eb6148;
+}
+
+.sauCoolesButtonDiv{
+	text-align: center;
 }
 
 .header-day{

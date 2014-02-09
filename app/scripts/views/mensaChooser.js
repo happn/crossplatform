@@ -17,7 +17,8 @@
 		events : {
 			'click li' : 'selectMensa',
 			'click .direct' : 'close',
-			'click .position' : 'fuckYouMap'
+			'click .position' : 'fuckYouMap',
+			'click .back' : 'backToList'
 		},
 
 		fetch : function(){
@@ -29,9 +30,11 @@
 				this.mensen = new Backbone.Collection(data.mensen);
 			}
 			if (map == 'map'){
+				$('.viewport').css('margin-top', '0px');
 				this.$templates.map().appendTo(this.$el.empty());
 			}
 			else{
+				$('.viewport').css('margin-top', '0px');
 				this.$templates.mensen(data).appendTo(this.$el.empty());
 			}
 		},
@@ -45,6 +48,15 @@
 			this.$el.find('li.selected').removeClass('selected');
 			$target.addClass('selected');
 			event.preventDefault();
+
+			var navigateToMenu = function(){
+				this.remove();
+				this.parent.trigger('navigate', 'menu');
+			}
+
+			if(this.mensa){
+				setInterval(navigateToMenu.bind(this),100);
+			}
 		},
 
 		fuckYouMap : function(){
@@ -71,22 +83,6 @@
 				});
 
 				return nearestMensa;
-
-				/*
-				$.getJSON('mensen.json', function(data){
-					var mensen = new Backbone.Collection(data.mensen);
-
-					mensen.forEach(function( mens ){
-	    				var dist = calcDistance(position, mens.get('location').lat, mens.get('location').lng)
-	    
-				    	if(dist < nearest){
-				        	nearest = dist;
-				        	mensa = mens;
-				    	}
-					});
-
-					return mensa;
-				});*/
 			}
 
 			var calcDistance = function(position, lat1, lon1){
@@ -109,12 +105,10 @@
 			
 			var onSuccess = function(position) {//position
 
-				var mensa = nearestMensa.call(this, position);
+				this.mensa = nearestMensa.call(this, position);
 
-				console.log(mensa.get('name'));
-
-                var myLat = mensa.get('location').lat;
-                var myLong = mensa.get('location').lng;
+                var myLat = this.mensa.get('location').lat;
+                var myLong = this.mensa.get('location').lng;
 
                 //MAP
                 var mapOptions = {
@@ -134,7 +128,7 @@
 
                 infoWindow = new google.maps.InfoWindow();
     			infoWindow.setOptions({
-        			content: "<div>" + mensa.get('name') + "</div>",
+        			content: "<div>" + this.mensa.get('name') + "</div>",
         			minWidth: 150,
         			//position: new google.maps.LatLng(48.05007, 8.20634)
     			});
@@ -153,9 +147,16 @@
             //onSuccess(48.05007, 8.20634);		
 		},
 
+		backToList : function(){
+			//this.mensa = null
+			//this.remove();
+			this.fetch();
+		},
+
 		close : function(){
 			if(this.mensa){
 				this.remove();
+				this.parent.trigger('mensa-change', this.mensa.toJSON() );
 				this.parent.trigger('navigate', 'menu');
 			}
 		}
