@@ -34,6 +34,10 @@
 				this.view = new happn.Views.MensaChooser( this, $div );
 			}.bind(this));
 
+			this.router.route('show-map', function(){
+				this.view = new happn.Views.MensaChooser( this, $('.viewport') );
+			}.bind(this));
+
 			this.router.route('menu', function(){
 				this.view = new happn.Views.MenuSlider( this, $('.viewport') ); 
 			}.bind(this));

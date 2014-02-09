@@ -65,6 +65,12 @@ h3 {
 	border-color: #c3513c;
 }
 
+.btn-yep{
+	margin-left:10px;
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+}
+
 .nav{
 	display: table;
     width: 100%;
@@ -89,6 +95,10 @@ h3 {
 
 .nav li.active a{
 	color:#eb6148;
+}
+
+.sauCoolesButtonDiv{
+	text-align: center;
 }
 
 .header-day{
@@ -154,12 +164,25 @@ h3 {
 	background: #fff;
 }
 
+.meal-picture-posting {
+	clear:both;
+	float: right;
+	padding-right: 6.25%;
+	padding-top: 4%;
+}
+
+.meal-picture-posting img{
+	width: 29px;
+	height: 25px;
+	margin-top: 7px
+}
+
 .meal-like {
 	font-size: 20px;
 	font-family: "montserrat-regular";
 	float: right;
 	padding-right: 6%;
-	padding-top: 10%;
+	padding-top: 5%;
 }
 
 .meal-like img{
@@ -174,6 +197,16 @@ h3 {
 }
 
 .meal-like-circle{
+	display: inline-block;
+	width: 38px;
+	height: 38px;
+	line-height: 37px;
+	border-radius: 9999px;
+	border: 2px solid #eb6148;
+	text-align: center;
+}
+
+.meal-camera-circle{
 	display: inline-block;
 	width: 38px;
 	height: 38px;

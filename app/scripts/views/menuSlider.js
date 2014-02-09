@@ -67,7 +67,7 @@
 			});
 
 			// if date > 4 ? date = 4
-			this.navigate(null, Math.min(4, (new Date().getDay() - 1 )));
+			this.navigate(null, Math.min(4, new Date().getDay() ));
 		},
 
 		addSpring : function( $elem ){
@@ -123,8 +123,12 @@
 		},
 
 		navigate : function( event, index ){
-			var index = index || $(event.currentTarget).data('index'),
-				position = - index * $(window).width();
+
+			if( index == null ){
+				index = $(event.currentTarget).data('index');
+			}
+
+			var position = - index * $(window).width();
 
 			$('#days').css({ 
                 '-webkit-transform' : 'translate3d(' + position + 'px, 0, 0)',
