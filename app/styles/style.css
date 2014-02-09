@@ -242,6 +242,7 @@ h3 {
 
 .meal{
 	overflow: hidden;
+	border-top: 2px solid #ECECEC;
 }
 
 .meal h4 {
@@ -252,6 +253,7 @@ h3 {
 	background: #fff;
 	padding-left: 15px;
 	padding-bottom: 10px;
+	padding-top: 11px;
 }
 
 #days > section {
