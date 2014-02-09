@@ -6,7 +6,8 @@
 
 		events : {
 			'touchstart .nav li' : 'navigate',
-			'click #make-photo' : 'showPhoto'
+			'click #make-photo' : 'showPhoto',
+			'touchstart .no-image' : 'showPhoto'
 		},
 	
 		initialize : function( parent, $view, mensa ){
@@ -50,7 +51,7 @@
 
 			this.$el.empty().html($baseTmpl);
 
-			this.$el.find('.meal-pictures')
+			this.$el.find('.meal-pictures:not(.no-image)')
 				.cantTouchThis({
 					tile : { width : $(window).width() },
 					tiles : 2

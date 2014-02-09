@@ -83,7 +83,7 @@
                             <% } %>
                         <% } %>
                     </div>
-                    <div class="meal-pictures">
+                    <div class="meal-pictures <%= !hasImage ? 'no-image' : '' %> ">
                         <% if(hasImage){ %>
                             <% menu.pictures.forEach(function( picture ){ %>
                                 <div class="meal-picture">
