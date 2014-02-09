@@ -5,7 +5,8 @@
 		springCache : {},
 
 		events : {
-			'touchstart .nav li' : 'navigate'
+			'touchstart .nav li' : 'navigate',
+			'click #make-photo' : 'showPhoto'
 		},
 	
 		initialize : function( parent, $view ){
@@ -68,6 +69,29 @@
 
 			// if date > 4 ? date = 4
 			this.navigate(null, Math.min(4, new Date().getDay() ));
+		},
+
+		showPhoto : function (){
+			$.blockUI({ message: $('#question'), css: { width: '275px' } });
+
+			$('#yes').click(function() { 
+	            // update the block message 
+	            $.blockUI({ message: "<h1>Remote call in progress...</h1>" }); 
+	 
+	            $.ajax({ 
+	                url: 'wait.php', 
+	                cache: false, 
+	                complete: function() { 
+	                    // unblock when remote call returns 
+	                    $.unblockUI(); 
+	                } 
+	            }); 
+        	}); 
+ 
+	        $('#no').click(function() { 
+	            $.unblockUI(); 
+	            return false; 
+	        });
 		},
 
 		addSpring : function( $elem ){
