@@ -45,6 +45,7 @@
 				touchStart : function( event ){
                 	this.touched.start.time = $.now();                            
                 	this.touched.start.x = event.originalEvent.touches[0].pageX;
+                    this.touched.start.y = event.originalEvent.touches[0].pageY;
 				},
 
 				touchEnd : function( event ){
@@ -68,9 +69,18 @@
 				},
 
 				touchMove : function( event ){
-					event.preventDefault();
-                    this.touched.moved = event.originalEvent.changedTouches[0].pageX - this.touched.start.x;
-                    this.goTo(((this.touched.moved) - (this.position * this.tile.width)));
+                    this.touched.movedX = event.originalEvent.changedTouches[0].pageX - this.touched.start.x;
+                    this.touched.movedY = event.originalEvent.changedTouches[0].pageY - this.touched.start.y;
+
+                    if(Math.abs(this.touched.movedY) > Math.abs(this.touched.movedX)){
+                       return; 
+                    }
+
+                    event.preventDefault();
+
+                    if( Math.abs(this.touched.movedX) > 30 ){
+                         this.goTo(((this.touched.movedX) - (this.position * this.tile.width)));
+                    }                   
 				},
 
                 tileGoTo : function( position ){
