@@ -325,7 +325,7 @@ h3 {
 	display: inline-block;
 	width: 3px;
 	height: 3px;
-	float: right;
+	float: left;
 	border: 2px solid #fff;
 	border-radius: 10px;
 	margin-right: 10px;
@@ -340,7 +340,7 @@ h3 {
 	position: absolute;
 	z-index: 2;
 	width: 100%;
-	padding: 10px 5px 0px 0px;
+	padding: 10px 5px 0px 15px;
 	box-sizing: border-box;
 	overflow: hidden;
 }

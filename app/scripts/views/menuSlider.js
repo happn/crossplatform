@@ -46,6 +46,10 @@
 					menu.menu = menu.menu.replace(/kein Angebot/g, '');
 					menu.width = menu.pictures.length * 100;
 
+					if( menu.width === 0 ){
+						menu.width = 100;
+					}
+
 					var $menu = this.$templates.menuItem({ menu : menu });
 
 					if( likes.indexOf(menu.mid) > -1){
@@ -64,15 +68,18 @@
 
 			this.$el.empty().html($baseTmpl);
 
-			this.$el.find('.meal-pictures:not(.no-image)').each(function( ele ){
-				var $ele = $(this);
-
-				$ele.cantTouchThis({
-					tile : { width : tileWidth },
-					tiles : $ele.children().length
-				})
-				.on('tileChange', self.tileChange.bind(self))
-			});
+			//init after elements are in dom
+			setTimeout(function(){
+				this.$el.find('.meal-pictures:not(.no-image)').each(function( ele ){
+					var $ele = $(this);
+					$ele.cantTouchThis({
+						tile : { width : tileWidth },
+						tiles : $ele.children().length
+					})
+					.on('tileChange', self.tileChange.bind(self))
+				});
+			}.bind(this), 300);
+			
 				
 			this.$el.find('.meal-dots').each(function(){
 				$(this).find('span.dot').first().addClass('active');
