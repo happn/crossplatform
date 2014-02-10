@@ -19,8 +19,8 @@
 			}.bind(this));
 
 			this.setupRouting();
-
-			if(!this.currentMensa){
+			
+			if( !this.currentMensa){
 				this.router.navigate('select-mensa', {trigger: true, replace: true});
 			} else {
 				this.router.navigate('menu', {trigger: true, replace: true});
@@ -35,7 +35,7 @@
 			}.bind(this));
 
 			this.router.route('show-map', function(){
-				this.view = new happn.Views.MensaChooser( this, $('.viewport'), this.currentMensa);
+				this.view = new happn.Views.MensaChooser( this, $('.viewport'));
 			}.bind(this));
 
 			this.router.route('menu', function(){

@@ -6,7 +6,7 @@
 
 		events : {
 			'touchstart .nav li' : 'navigate',
-			'touchstart #make-photo' : 'isLoggedIn',
+			'touchstart .make-photo' : 'isLoggedIn',
 			'click .no-image' : 'isLoggedIn',
 			'touchstart .meal-like' : 'like'
 		},
@@ -14,7 +14,7 @@
 		initialize : function( parent, $view, mensa ){
 			this.$el = $view;
 			this.mensa = mensa;
-			this.requireTemplate('menuNav', 'menuBase', 'menuDay', 'menuItem');
+			this.requireTemplate('menuNav', 'menuBase', 'menuDay', 'menuItem', 'mealPic');
 			this.fetch();
 		},
 
@@ -31,6 +31,7 @@
 			var $nav = this.$templates.menuNav({ dates : dates, mensa : this.mensa.name }),
 				$baseTmpl = this.$templates.menuBase(),
 				likes = this.getStorage('likes') || [],
+				tileWidth = $(window).width(),
 				self = this;
 
 			$baseTmpl.find('header').html($nav);
@@ -43,6 +44,7 @@
 					menu.menu = menu.menu.replace('*', '<br><b>');
 					menu.menu = menu.menu.replace('*', '</b><br>')
 					menu.menu = menu.menu.replace(/kein Angebot/g, '');
+					menu.width = menu.pictures.length * 100;
 
 					var $menu = this.$templates.menuItem({ menu : menu });
 
@@ -51,6 +53,10 @@
 					}
 
 					$day.append($menu);
+
+					menu.pictures.forEach(function(p){
+						this.loadPost(p, menu.mid, menu.pictures.length);
+					}, this)
 				}, this)
 
 				$baseTmpl.find('#days > section').append($day);
@@ -58,16 +64,16 @@
 
 			this.$el.empty().html($baseTmpl);
 
-			this.$el.find('.meal-pictures:not(.no-image)')
-				.cantTouchThis({
-					tile : { width : $(window).width() },
-					tiles : 2
-				})
-				.on('tileChange', this.tileChange.bind(this))
-				.each(function( n, elem ){
-					self.addSpring($(elem).find('.poster-dude').eq(0));
-				})
+			this.$el.find('.meal-pictures:not(.no-image)').each(function( ele ){
+				var $ele = $(this);
 
+				$ele.cantTouchThis({
+					tile : { width : tileWidth },
+					tiles : $ele.children().length
+				})
+				.on('tileChange', self.tileChange.bind(self))
+			});
+				
 			this.$el.find('.meal-dots').each(function(){
 				$(this).find('span.dot').first().addClass('active');
 			});
@@ -76,9 +82,28 @@
 			this.navigate(null, Math.min(4, new Date().getDay() -1 ));
 		},
 
-		isLoggedIn: function(){
+		loadPost : function( post_id , mid, tiles){
+			$.getJSON('https://app.heythere.de/posts/' + post_id + ".json", function( post ){
+				var author = _.findWhere( post.users, { id : post.author }),
+					$img = this.$templates.mealPic({
+						username : author.username,
+						userpicture : author.picture.small,
+						picture : post.meta.image.post,
+						width : 100 / tiles
+					});
+				this.$el.find('.meal-pictures[data-mid="' + mid + '"]').append($img);
+			}.bind(this));
+		},
 
-			var self = this
+		isLoggedIn: function( event ){
+			var self = this;
+			event.preventDefault();
+			event.stopPropagation();
+			this.curMid = $(event.currentTarget).data('mid');
+
+			if(!this.curMid){
+				this.curMid = $(event.currentTarget).parents('.meal-like').data('mid');
+			}
 
 			$.ajax({method:'GET', url: 'https://app.heythere.de/user/loggedIn.json', success: function(){
 				self.showPhoto();
@@ -112,32 +137,49 @@
 		},
 
 		showPhoto : function (){
-			navigator.camera.getPicture(this.uploadPhoto.bind(this), function(){
-				alert('Failed because: ' + message);
-			}, { 
+			navigator.camera.getPicture(this.uploadPhoto.bind(this), function(){}, { 
 				quality: 50, 
     			destinationType: Camera.DestinationType.FILE_URI 
     		}); 
 		},
 
 		uploadPhoto: function(image){
+			$('.loader').fadeIn();
+
 			var options = new FileUploadOptions();
 			  	options.fileKey = "meta[image]";
-			  	options.fileName = "";
+			  	options.fileName = "benjamin";
 			  	options.mimeType = "image/jpeg";
 			  	options.params = {
-			  		content : "",
-			  		venue : {
-			  			"foursquare_id" : this.mensa.id
-			  		}
+			  		content : "Posted from Happn",
+			  		venue :  this.mensa.id
 			  	};
 
 		 	var ft = new FileTransfer();
-		  	ft.upload(image, 'https://app.heythere.de/posts/', function(){
-		  		alert(arguments)
-		  	}, function(){
-		  		alert(arguments)
+
+		  	ft.upload(image, 'https://app.heythere.de/posts/', function(r){
+		  		var post = JSON.parse(r.response);
+		  		this.post(post.id);
+		  	}.bind(this), function(error){
+		  		$('.loader').fadeOut();
+		  		alert("Upload ist fehlgeschlagen");
 		  	}, options);
+		},
+
+		post : function(post_id ){
+			$.ajax({
+				url : 'http://appserver.happn.de:8010/v2/post/' + this.curMid,
+				data : {
+					heythere_post_id : post_id
+				},
+				method : 'post',
+				success : function(){
+					window.location.reload(true);
+				},
+				error : function(x, y, z){
+					$('.loader').fadeOut();
+				}	
+			})
 		},
 
 		addSpring : function( $elem ){
@@ -173,7 +215,7 @@
 			$dots.find('span.dot').removeClass('active');
 			$dots.find('span.dot').eq(nr).addClass('active');
 
-			this.animateSpring($posterDude);
+			// this.animateSpring($posterDude);
 		},
 
 		animateSpring : function( $elem ){
@@ -234,7 +276,7 @@
 				hadAlreadyLiked = likes.indexOf(mid) != -1;
 
 			$.post('http://appserver.happn.de:8010/v2/' + (hadAlreadyLiked ? 'unlike' : 'like') + '/' + mid + ".json").done(function(data){
-				alert(data);
+				alert(JSON.stringify(data));
 			});
 
 			if( hadAlreadyLiked ){

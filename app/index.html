@@ -13,6 +13,7 @@
         </script>
     </head>
     <body>
+        <div class="loader"><img src="images/loader.gif"></div>
     	<section class="viewport"></section>
 
         <div id="question" style="display:none; cursor:default"> 
@@ -104,20 +105,9 @@
                             <% } %>
                         <% } %>
                     </div>
-                    <div class="meal-pictures <%= !hasImage ? 'no-image' : '' %> ">
-                        <% if(hasImage){ %>
-                            <% menu.pictures.forEach(function( picture ){ %>
-                                <div class="meal-picture">
-                                    <img src="images/food.jpg">
-                                    <div class="picture-gradient">
-                                        <div class="poster-dude">
-                                        POSTED BY SEPPSTER<img src="images/avatar.png">
-                                        </div>
-                                    </div>
-                                </div>
-                           <% }); %>
-                        <% } else { %>
-                            <div class="no-image">
+                    <div class="meal-pictures <%= !hasImage ? 'no-image' : '' %> " data-mid="<%= menu.mid %>" style="width:<%= menu.width %>%">
+                        <% if(!hasImage){ %>
+                            <div class="no-image" data-mid="<%= menu.mid %>">
                                 <span>Mache eine Bild</span>
                             </div>
                         <% } %>
@@ -131,11 +121,21 @@
                     </div>
                     <div class="meal-picture-posting">
                         <div class="meal-camera-circle">
-                            <a href="#" id="make-photo"><img src="images/foto.png"></a>
+                            <a href="#" class="make-photo" data-mid="<%= menu.mid %>"><img src="images/foto.png"></a>
                         </div>  
                     </div>
                     <div class="meal-description">
                         <%= menu.menu %>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script type="text/template" id="template-mealPic">
+            <div class="meal-picture" style="width:<%=width%>%">
+                <img src="<%= picture %>.jpg">
+                <div class="picture-gradient">
+                    <div class="poster-dude">
+                    POSTED BY <%= username %><img src="<% userpicture %>">
                     </div>
                 </div>
             </div>
