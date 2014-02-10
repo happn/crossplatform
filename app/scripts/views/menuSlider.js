@@ -282,9 +282,7 @@
 				likes = this.getStorage('likes') || [],
 				hadAlreadyLiked = likes.indexOf(mid) != -1;
 
-			$.post('http://appserver.happn.de:8010/v2/' + (hadAlreadyLiked ? 'unlike' : 'like') + '/' + mid + ".json").done(function(data){
-				alert(JSON.stringify(data));
-			});
+			$.post('http://appserver.happn.de:8010/v2/' + (hadAlreadyLiked ? 'unlike' : 'like') + '/' + mid + ".json");
 
 			if( hadAlreadyLiked ){
 				var index = likes.indexOf(mid);
