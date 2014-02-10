@@ -173,7 +173,7 @@
 		  	}, options);
 		},
 
-		post : function(post_id ){
+		post : function( post_id ){
 			$.ajax({
 				url : 'http://appserver.happn.de:8010/v2/post/' + this.curMid,
 				data : {
@@ -280,9 +280,16 @@
 				mid = $target.data('mid'),
 				likesCount = $target.data('likes'),
 				likes = this.getStorage('likes') || [],
-				hadAlreadyLiked = likes.indexOf(mid) != -1;
+				hadAlreadyLiked = likes.indexOf(mid) != -1,
+				uuid = this.getStorage('uuid');
 
-			$.post('http://appserver.happn.de:8010/v2/' + (hadAlreadyLiked ? 'unlike' : 'like') + '/' + mid + ".json");
+			$.ajax({
+				url : 'http://appserver.happn.de:8010/v2/' + (hadAlreadyLiked ? 'unlike' : 'like') + '/' + mid + ".json",
+				method : 'POST',
+				data : {
+					uuid : uuid
+				}
+			});
 
 			if( hadAlreadyLiked ){
 				var index = likes.indexOf(mid);

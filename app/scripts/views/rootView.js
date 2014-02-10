@@ -7,8 +7,19 @@
 
 		initialize : function( options ){
 			this.currentMensa = this.getStorage("mensa");
-			this.currentUser = this.getStorage("user");
+			this.currentUser = this.getStorage("user");	
+			var uuid = this.getStorage('uuid');
 
+			if(!uuid){
+				var uuid = Math.random().toString().substring(2,8);
+
+				if(typeof device != "undefined" && device.uuid){
+					uuid = device.uuid;	
+				}
+
+				this.setStorage('uuid', uuid);
+			}
+			
 			this.on('mensa-change', function( mensa ){
 				this.currentMensa = mensa;
 				this.setStorage("mensa", mensa);
