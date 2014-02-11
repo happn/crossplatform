@@ -15,3 +15,9 @@
 /platforms/android/.idea/workspace.xml
 
 /platforms/ios/Happn.xcodeproj/project.xcworkspace/xcuserdata/zentur.xcuserdatad/UserInterfaceState.xcuserstate
+
+/platforms/android/out/production/android/de/zencoding/happn/BuildConfig.class
+
+/platforms/android/out/production/android/org/apache/cordova/BuildConfig.class
+
+/platforms/android/out/production/CordovaLib/org/apache/cordova/BuildConfig.class
